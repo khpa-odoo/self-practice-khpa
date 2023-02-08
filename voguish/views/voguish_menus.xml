@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="voguish_menu_root" name="Voguish">
+        <menuitem id="voguish_first_level_menu" name="Outfits">
+            <menuitem id="voguish_menu_action" action="voguish_action"/>
+        </menuitem>
+    </menuitem>
+</odoo>

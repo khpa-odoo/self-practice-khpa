@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="voguish_action" model="ir.actions.act_window">
+        <field name="name">Outfits</field>
+        <field name="res_model">voguish</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="voguish_view_list" model="ir.ui.view">
+        <field name="name">voguish.view.tree</field>
+        <field name="model">voguish</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="name" string="Outfit Name"/>
+                <field name="brand"/>
+                <field name="rent_per_hour"/>
+                <field name="availability_status"/>
+                <field name="category"/>
+                <field name="size"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="voguish_view_form" model="ir.ui.view">
+        <field name="name">voguish.view.form</field>
+        <field name="model">voguish</field>
+        <field name="arch" type="xml">
+            <form string="Channel">
+                <sheet>
+                    <h1><group><field name="name"/></group></h1>
+                    <group>
+                        <group>
+                            <field name="brand"/>
+                        </group>
+                        <group>
+                            <field name="availability_status"/>
+                        </group>
+                        <group>
+                                <field name="category"/>
+                        </group>
+                        <group>
+                                <field name="size"/>
+                        </group>        
+                        <notebook>
+                            <page string="Description">
+                                <group>
+                                    <field name="description"/>
+                                </group>
+                                <group>
+                                    <field name="deposit_price"/>
+                                </group>
+                                <group>
+                                <field name="rent_per_hour"/>
+                                </group>
+                                <group>
+                                    <field name="date_availability" string="Available Till"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="voguish_view_search" model="ir.ui.view">
+        <field name="name">voguish.view.search</field>
+        <field name="model">voguish</field>
+        <field name="arch" type="xml">
+            <search string="Channel">
+                <field name="name"/>
+                <field name="brand"/>
+                <field name="availability_status"/>
+                <field name="rent_per_hour" string="Rent"/>
+                <filter string="Available" name="availability_status" domain="[('availability_status', '=', 'True')]"/>
+                <group expand="1" string="Group By">
+                        <filter string="Category" name="category" context="{'group_by':'category'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+</odoo>
