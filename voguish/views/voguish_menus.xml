@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <menuitem id="voguish_menu_root" name="Voguish">
-        <menuitem id="voguish_first_level_menu" name="Outfits">
+        <menuitem id="voguish_first_level_menu" name="Catalog">
             <menuitem id="voguish_menu_action" action="voguish_action"/>
+            <menuitem id="voguish_menu_action_design" action="voguish_design_action"/>
+        </menuitem>
+        <menuitem id="voguish_first_level_menu_settings" name="Settings">
+                <menuitem id="voguish_menu_action_categories" action="voguish_categories_action"/>
+                <menuitem id="voguish_menu_action_tags" action="voguish_tags_action"/>        
         </menuitem>
     </menuitem>
 </odoo>

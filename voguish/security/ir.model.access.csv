@@ -1,2 +1,5 @@
 id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
 voguish.access_voguish,access_voguish,voguish.model_voguish,base.group_user,1,1,1,1
+voguish.access_voguish_categories,access_voguish_categories,voguish.model_voguish_categories,base.group_user,1,1,1,1
+voguish.access_voguish_tag,access_voguish_tag,voguish.model_voguish_tag,base.group_user,1,1,1,1
+voguish.access_voguish_design,access_voguish_design,voguish.model_voguish_design,base.group_user,1,1,1,1

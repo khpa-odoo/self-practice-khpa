@@ -6,7 +6,7 @@
     'application': True,
     'license': 'LGPL-3',
     'data': [
-        'security/ir.model.access.csv',
         'views/voguish_views.xml',
-        'views/voguish_menus.xml']
+        'views/voguish_menus.xml',
+        'security/ir.model.access.csv']
 }
