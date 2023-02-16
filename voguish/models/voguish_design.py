@@ -7,9 +7,7 @@ class VoguishDesign(models.Model):
     name = fields.Char(required=True)
     image = fields.Image()
     description = fields.Text()
-    category = fields.Selection(
-        selection=[('casuals', 'Casuals'), ('chic', 'Chic'), ('formals', 'Formals'), ('ethnics', 'Ethnics')],
-        help="Type is used to separate Leads and Opportunities")
+    category_id = fields.Many2one("voguish.categories", string="Category")
     size = fields.Selection(
         selection=[('xs', 'XS'), ('s', 'S'), ('m', 'M'), ('l', 'L'),('xl','XL'),('xxl','XXL')],
         help="Type is used to separate Leads and Opportunities")

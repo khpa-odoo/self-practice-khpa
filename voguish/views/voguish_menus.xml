@@ -7,6 +7,7 @@
         </menuitem>
         <menuitem id="voguish_first_level_menu_settings" name="Settings">
                 <menuitem id="voguish_menu_action_categories" action="voguish_categories_action"/>
+                <menuitem id="voguish_menu_action_sizes" action="voguish_sizes_action"/>
                 <menuitem id="voguish_menu_action_tags" action="voguish_tags_action"/>        
         </menuitem>
     </menuitem>

@@ -18,6 +18,12 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+    <record id="voguish_sizes_action" model="ir.actions.act_window">
+        <field name="name">Product Sizes</field>
+        <field name="res_model">voguish.size</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
     <record id="voguish_tags_action" model="ir.actions.act_window">
         <field name="name">Product Tags</field>
         <field name="res_model">voguish.tag</field>
@@ -33,8 +39,8 @@
                 <field name="brand"/>
                 <field name="rent_per_hour"/>
                 <field name="availability_status"/>
-                <field name="category"/>
-                <field name="size"/>
+                <field name="category_id"/>
+                <field name="size_ids"/>
             </tree>
         </field>
     </record>
@@ -46,28 +52,51 @@
             <form string="Channel">
                 <sheet>
                     <div>
-                        <field name="image" nolabel='1' widget="image" class="oe_avatar"/>
+                        <field name="image" nolabel='1' widget="image" style="margin-right:15px;" class="oe_avatar"/>
                         <label for="name" string="Outfit Name"/>
                         <h1><field name="name" placeholder="New Dress"/></h1>
-                        <group>   
+                    </div><br/><br/>    
+                    <group col='2'>   
+                        <group>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
                             <field name="availability_status"/>
                         </group>
-                    </div>        
+                    </group>
                     <notebook>
                         <page string="General Information">
                             <group col='2'>
                                 <group>
                                     <field name="description"/>
                                     <field name="brand"/>
-                                    <field name="category"/>
+                                    <field name="category_id"/>
                                 </group>
                                 <group>
-                                    <field name="size" widget="radio"/>
+                                    <field name="size_ids" widget="many2many_checkboxes"/>
                                     <field name="date_availability" string="Available Till"/>
                                 </group>
                                 <group>
                                     <field name="deposit_price"/>
                                     <field name="rent_per_hour"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Alterations">
+                            <group col='2'>
+                                <group>
+                                    <field name="neck"/>
+                                    <field name="neck_to_knee"/>
+                                    <field name="bust"/>
+                                    <field name="hips"/>
+                                    <field name="inseam"/>
+                                </group>
+                                <group>
+                                    <field name="arm_length"/>
+                                    <field name="arm_hole"/>
+                                    <field name="wrist"/>
+                                    <field name="waist"/>
+                                    <field name="shoulder_to_waist"/>
                                 </group>
                             </group>
                         </page>
@@ -88,8 +117,8 @@
                 <field name="rent_per_hour" string="Rent"/>
                 <filter string="Available" name="availability_status" domain="[('availability_status', '=', 'True')]"/>
                 <group string="Group By">
-                    <filter string="Category" name="category" context="{'group_by':'category'}"/>
-                    <filter string="Size" name="size" context="{'group_by':'size'}"/>
+                    <filter string="Category" name="category_id" context="{'group_by':'category_id'}"/>
+                    <filter string="Size" name="size_ids" context="{'group_by':'size_ids'}"/>
                 </group>
             </search>
         </field>
@@ -101,7 +130,7 @@
         <field name="arch" type="xml">
             <tree string="Channel">
                 <field name="name" string="Outfit Name"/>
-                <field name="category"/>
+                <field name="category_id"/>
                 <field name="size"/>
             </tree>
         </field>
@@ -115,13 +144,13 @@
                 <sheet>
                     <label for="name" string="Outfit Name"/>
                     <label for="image" string="Reference Image" position="attributes" class="oe_right oe_highlight"/><br/>       
-                    <field name="image" widget="image" class="oe_avatar"/>    
+                    <field name="image" widget="image" style="margin-right:18px;" class="oe_avatar"/>    
                     <h1><field name="name" placeholder="New Dress"/></h1>   
                     <notebook>
                         <page string="Product Details">
                             <group>
                                 <field name="description"/>
-                                <field name="category"/>
+                                <field name="category_id"/>
                                 <field name="size" widget="radio"/>  
                             </group>
                         </page>
@@ -157,6 +186,38 @@
     <record id="voguish_categories_view_search" model="ir.ui.view">
         <field name="name">voguish.categories.view.search</field>
         <field name="model">voguish.categories</field>
+        <field name="arch" type="xml">
+            <search string="Channel">
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="voguish_size_view_list" model="ir.ui.view">
+        <field name="name">voguish.size.view.tree</field>
+        <field name="model">voguish.size</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="voguish_size_view_form" model="ir.ui.view">
+        <field name="name">voguish.size.view.form</field>
+        <field name="model">voguish.size</field>
+        <field name="arch" type="xml">
+            <form string="Channel">
+                <sheet>
+                    <h1><field name="name"/></h1>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="voguish_size_view_search" model="ir.ui.view">
+        <field name="name">voguish.size.view.search</field>
+        <field name="model">voguish.size</field>
         <field name="arch" type="xml">
             <search string="Channel">
                 <field name="name"/>
