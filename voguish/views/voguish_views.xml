@@ -83,7 +83,7 @@
                             </group>
                         </page>
                         <page string="Alterations">
-                            <group col='2'>
+                            <group col='2' string='Measurements (inches)'>
                                 <group>
                                     <field name="neck"/>
                                     <field name="neck_to_knee"/>
