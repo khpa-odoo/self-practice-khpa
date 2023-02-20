@@ -151,7 +151,7 @@
                             <group>
                                 <field name="description"/>
                                 <field name="category_id"/>
-                                <field name="size" widget="radio"/>  
+                                <field name="size" widget="selection_badge"/>  
                             </group>
                         </page>
                     </notebook>          
