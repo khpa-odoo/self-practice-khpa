@@ -14,8 +14,10 @@ class Voguish(models.Model):
     deposit_price = fields.Float(readonly=True,default=3000)
     rent_per_hour = fields.Float(readonly=True,copy=False)
     availability_status = fields.Boolean(default=True)
-    date_availability = fields.Date("Available Till")
-    
+    # date_availability = fields.Date("Available Till")
+    date_start = fields.Date()
+    date_end = fields.Date()
+
     neck = fields.Char()
     neck_to_knee = fields.Char()
     bust = fields.Char()

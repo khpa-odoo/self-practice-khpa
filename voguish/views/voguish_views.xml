@@ -40,7 +40,7 @@
                 <field name="rent_per_hour"/>
                 <field name="availability_status"/>
                 <field name="category_id"/>
-                <field name="size_ids"/>
+                <field name="size_ids" widget="many2many_tags"/>
             </tree>
         </field>
     </record>
@@ -74,11 +74,24 @@
                                 </group>
                                 <group>
                                     <field name="size_ids" widget="many2many_checkboxes"/>
-                                    <field name="date_availability" string="Available Till"/>
                                 </group>
                                 <group>
                                     <field name="deposit_price"/>
                                     <field name="rent_per_hour"/>
+                                </group>
+
+                                <group col='2'>
+                                    <!-- <field name="date_availability" string="Available Till" widget="daterange"/> -->
+                                    <group>
+                                        <field name="date_start" string="Required From :" class="oe_inline" widget="daterange" options='{"related_end_date": "date_end"}'
+                                            attrs="{'required': ['|', ('date_start', '=', False),
+                                            ('date_end', '=', False)]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="date_end" string="To :" class="oe_inline" widget="daterange" options='{"related_start_date": "date_start"}'
+                                            attrs="{'required': ['|', ('date_start', '=', False),
+                                            ('date_end', '=', False)]}"/>
+                                    </group>
                                 </group>
                             </group>
                         </page>
