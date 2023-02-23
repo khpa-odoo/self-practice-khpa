@@ -6,30 +6,6 @@
         <field name="view_mode">tree,form,kanban</field>
     </record>
 
-    <record id="voguish_design_action" model="ir.actions.act_window">
-        <field name="name">Design Outfits</field>
-        <field name="res_model">voguish.design</field>
-        <field name="view_mode">tree,form,kanban</field>
-    </record>
-
-    <record id="voguish_categories_action" model="ir.actions.act_window">
-        <field name="name">Categories</field>
-        <field name="res_model">voguish.categories</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <record id="voguish_sizes_action" model="ir.actions.act_window">
-        <field name="name">Product Sizes</field>
-        <field name="res_model">voguish.size</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-
-    <record id="voguish_tags_action" model="ir.actions.act_window">
-        <field name="name">Product Tags</field>
-        <field name="res_model">voguish.tag</field>
-        <field name="view_mode">tree,form</field>
-    </record>
-    
     <record id="voguish_view_list" model="ir.ui.view">
         <field name="name">voguish.view.tree</field>
         <field name="model">voguish</field>
@@ -50,6 +26,13 @@
         <field name="model">voguish</field>
         <field name="arch" type="xml">
             <form string="Channel">
+                <header>
+                    <!-- <button name="action_sold" string="Sold" states="new,offer received" type="object"/>
+                    <button name="action_sold"  string="Sold" states="offer accepted" class="oe_highlight" type="object"/>
+                    <button name="action_cancel" string="Cancel" states="new,offer received,offer accepted" type="object"/> -->
+                        
+                    <field name="state" widget="statusbar" options="{'clickable':'1'}"/>
+                </header>
                 <sheet>
                     <div>
                         <field name="image" nolabel='1' widget="image" style="margin-right:15px;" class="oe_avatar"/>
@@ -73,7 +56,7 @@
                                     <field name="category_id"/>
                                 </group>
                                 <group>
-                                    <field name="size_ids" widget="many2many_checkboxes"/>
+                                    <field name="size_ids" widget="many2many_checkboxes" attrs="{'invisible': [('availability_status', '=', False)]}"/>
                                 </group>
                                 <group>
                                     <field name="deposit_price"/>
@@ -81,16 +64,15 @@
                                 </group>
 
                                 <group col='2'>
-                                    <!-- <field name="date_availability" string="Available Till" widget="daterange"/> -->
                                     <group>
-                                        <field name="date_start" string="Required From :" class="oe_inline" widget="daterange" options='{"related_end_date": "date_end"}'
+                                        <field name="date_start" string="Available From :" class="oe_inline" widget="daterange" options='{"related_end_date": "date_end"}'
                                             attrs="{'required': ['|', ('date_start', '=', False),
-                                            ('date_end', '=', False)]}"/>
+                                            ('date_end', '=', False)], 'invisible': [('availability_status', '=', False)]}"/>
                                     </group>
                                     <group>
                                         <field name="date_end" string="To :" class="oe_inline" widget="daterange" options='{"related_start_date": "date_start"}'
                                             attrs="{'required': ['|', ('date_start', '=', False),
-                                            ('date_end', '=', False)]}"/>
+                                            ('date_end', '=', False)], 'invisible': [('availability_status', '=', False)]}"/>
                                     </group>
                                 </group>
                             </group>
@@ -133,139 +115,6 @@
                     <filter string="Category" name="category_id" context="{'group_by':'category_id'}"/>
                     <filter string="Size" name="size_ids" context="{'group_by':'size_ids'}"/>
                 </group>
-            </search>
-        </field>
-    </record>
-
-    <record id="voguish_design_view_list" model="ir.ui.view">
-        <field name="name">voguish.design.view.tree</field>
-        <field name="model">voguish.design</field>
-        <field name="arch" type="xml">
-            <tree string="Channel">
-                <field name="name" string="Outfit Name"/>
-                <field name="category_id"/>
-                <field name="size"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="voguish_design_view_form" model="ir.ui.view">
-        <field name="name">voguish.design.view.form</field>
-        <field name="model">voguish.design</field>
-        <field name="arch" type="xml">
-            <form string="Channel">
-                <sheet>
-                    <label for="name" string="Outfit Name"/>
-                    <label for="image" string="Reference Image" position="attributes" class="oe_right oe_highlight"/><br/>       
-                    <field name="image" widget="image" style="margin-right:18px;" class="oe_avatar"/>    
-                    <h1><field name="name" placeholder="New Dress"/></h1>   
-                    <notebook>
-                        <page string="Product Details">
-                            <group>
-                                <field name="description"/>
-                                <field name="category_id"/>
-                                <field name="size" widget="selection_badge"/>  
-                            </group>
-                        </page>
-                    </notebook>          
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-
-    <record id="voguish_categories_view_list" model="ir.ui.view">
-        <field name="name">voguish.categories.view.tree</field>
-        <field name="model">voguish.categories</field>
-        <field name="arch" type="xml">
-            <tree string="Channel">
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="voguish_categories_view_form" model="ir.ui.view">
-        <field name="name">voguish.categories.view.form</field>
-        <field name="model">voguish.categories</field>
-        <field name="arch" type="xml">
-            <form string="Channel">
-                <sheet>
-                    <h1><field name="name"/></h1>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="voguish_categories_view_search" model="ir.ui.view">
-        <field name="name">voguish.categories.view.search</field>
-        <field name="model">voguish.categories</field>
-        <field name="arch" type="xml">
-            <search string="Channel">
-                <field name="name"/>
-            </search>
-        </field>
-    </record>
-
-    <record id="voguish_size_view_list" model="ir.ui.view">
-        <field name="name">voguish.size.view.tree</field>
-        <field name="model">voguish.size</field>
-        <field name="arch" type="xml">
-            <tree string="Channel">
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="voguish_size_view_form" model="ir.ui.view">
-        <field name="name">voguish.size.view.form</field>
-        <field name="model">voguish.size</field>
-        <field name="arch" type="xml">
-            <form string="Channel">
-                <sheet>
-                    <h1><field name="name"/></h1>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="voguish_size_view_search" model="ir.ui.view">
-        <field name="name">voguish.size.view.search</field>
-        <field name="model">voguish.size</field>
-        <field name="arch" type="xml">
-            <search string="Channel">
-                <field name="name"/>
-            </search>
-        </field>
-    </record>
-
-    <record id="voguish_tag_view_list" model="ir.ui.view">
-        <field name="name">voguish.tag.view.tree</field>
-        <field name="model">voguish.tag</field>
-        <field name="arch" type="xml">
-            <tree string="Channel">
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="voguish_tag_view_form" model="ir.ui.view">
-        <field name="name">voguish.tag.view.form</field>
-        <field name="model">voguish.tag</field>
-        <field name="arch" type="xml">
-            <form string="Channel">
-                <sheet>
-                    <h1><field name="name"/></h1>
-                </sheet>
-            </form>
-        </field>
-    </record>
-
-    <record id="voguish_tag_view_search" model="ir.ui.view">
-        <field name="name">voguish.tag.view.search</field>
-        <field name="model">voguish.tag</field>
-        <field name="arch" type="xml">
-            <search string="Channel">
-                <field name="name"/>
             </search>
         </field>
     </record>

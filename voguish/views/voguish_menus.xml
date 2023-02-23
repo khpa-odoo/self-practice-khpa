@@ -6,6 +6,7 @@
             <menuitem id="voguish_menu_action_design" action="voguish_design_action"/>
         </menuitem>
         <menuitem id="voguish_first_level_menu_settings" name="Settings">
+                <menuitem id="voguish_menu_action_customers" action="voguish_customers_action"/>
                 <menuitem id="voguish_menu_action_categories" action="voguish_categories_action"/>
                 <menuitem id="voguish_menu_action_sizes" action="voguish_sizes_action"/>
                 <menuitem id="voguish_menu_action_tags" action="voguish_tags_action"/>        

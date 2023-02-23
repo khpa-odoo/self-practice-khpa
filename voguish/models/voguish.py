@@ -8,15 +8,22 @@ class Voguish(models.Model):
     image = fields.Binary()
     category_id = fields.Many2one("voguish.categories", string="Category")
     tag_ids = fields.Many2many("voguish.tag", string="Tags")
-    size_ids = fields.Many2many("voguish.size", string="Available Size(s)")
+    size_ids = fields.Many2many("voguish.size",required=True, string="Available Size(s)")
     description = fields.Text()
     brand = fields.Text()
     deposit_price = fields.Float(readonly=True,default=3000)
     rent_per_hour = fields.Float(readonly=True,copy=False)
     availability_status = fields.Boolean(default=True)
-    # date_availability = fields.Date("Available Till")
     date_start = fields.Date()
     date_end = fields.Date()
+    active = fields.Boolean(default=True)
+    state = fields.Selection(
+        string='State',
+        selection=[('new', 'New'), ('order received', 'Order Received'), 
+        ('order accepted', 'Order Accepted'), ('alterations', 'Alterations'),
+        ('rented', 'Rented'), ('cancelled', 'Cancelled')],
+        help="What's the Status!",default="new",required=True,copy=False)
+    
 
     neck = fields.Char()
     neck_to_knee = fields.Char()

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="voguish_design_action" model="ir.actions.act_window">
+        <field name="name">Design Outfits</field>
+        <field name="res_model">voguish.design</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <record id="voguish_design_view_list" model="ir.ui.view">
+        <field name="name">voguish.design.view.tree</field>
+        <field name="model">voguish.design</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="name" string="Outfit Name"/>
+                <field name="category_id"/>
+                <field name="size"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="voguish_design_view_form" model="ir.ui.view">
+        <field name="name">voguish.design.view.form</field>
+        <field name="model">voguish.design</field>
+        <field name="arch" type="xml">
+            <form string="Channel">
+                <sheet>
+                    <label for="name" string="Outfit Name"/>
+                    <label for="image" string="Reference Image" position="attributes" class="oe_right oe_highlight"/><br/>       
+                    <field name="image" widget="image" style="margin-right:18px;" class="oe_avatar"/>    
+                    <h1><field name="name" placeholder="New Dress"/></h1>   
+                    <notebook>
+                        <page string="Product Details">
+                            <group>
+                                <field name="description"/>
+                                <field name="category_id"/>
+                                <field name="size" widget="selection_badge"/>  
+                            </group>
+                        </page>
+                    </notebook>          
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
+
+
+
+    
+
+    
