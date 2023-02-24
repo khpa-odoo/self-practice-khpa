@@ -4,3 +4,4 @@ voguish.access_voguish_categories,access_voguish_categories,voguish.model_voguis
 voguish.access_voguish_tag,access_voguish_tag,voguish.model_voguish_tag,base.group_user,1,1,1,1
 voguish.access_voguish_design,access_voguish_design,voguish.model_voguish_design,base.group_user,1,1,1,1
 voguish.access_voguish_size,access_voguish_size,voguish.model_voguish_size,base.group_user,1,1,1,1
+voguish.access_voguish_customers,access_voguish_customers,voguish.model_voguish_customers,base.group_user,1,1,1,1

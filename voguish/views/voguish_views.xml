@@ -4,6 +4,7 @@
         <field name="name">Rent Outfits</field>
         <field name="res_model">voguish</field>
         <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{'search_default_availabilitystatus':True}</field>
     </record>
 
     <record id="voguish_view_list" model="ir.ui.view">
@@ -11,12 +12,14 @@
         <field name="model">voguish</field>
         <field name="arch" type="xml">
             <tree string="Channel">
+                <field name="sequence" widget="handle"/>
                 <field name="name" string="Outfit Name"/>
-                <field name="brand"/>
-                <field name="rent_per_hour"/>
-                <field name="availability_status"/>
                 <field name="category_id"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}"/>
+                <field name="availability_status"/>
                 <field name="size_ids" widget="many2many_tags"/>
+                <field name="rent_per_day"/>
+                <field name="deposit_price"/>
             </tree>
         </field>
     </record>
@@ -27,9 +30,8 @@
         <field name="arch" type="xml">
             <form string="Channel">
                 <header>
-                    <!-- <button name="action_sold" string="Sold" states="new,offer received" type="object"/>
-                    <button name="action_sold"  string="Sold" states="offer accepted" class="oe_highlight" type="object"/>
-                    <button name="action_cancel" string="Cancel" states="new,offer received,offer accepted" type="object"/> -->
+                    <button name="action_rent" string="Rent" states="new,alterations" class="oe_highlight" type="object"/>
+                    <button name="action_cancel" string="Cancel" states="new,alterations" type="object"/>
                         
                     <field name="state" widget="statusbar" options="{'clickable':'1'}"/>
                 </header>
@@ -41,10 +43,10 @@
                     </div><br/><br/>    
                     <group col='2'>   
                         <group>
-                            <field name="tag_ids" widget="many2many_tags"/>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}"/>
                         </group>
                         <group>
-                            <field name="availability_status"/>
+                            <field name="alter_outfit"/>
                         </group>
                     </group>
                     <notebook>
@@ -53,16 +55,17 @@
                                 <group>
                                     <field name="description"/>
                                     <field name="brand"/>
-                                    <field name="category_id"/>
-                                </group>
-                                <group>
-                                    <field name="size_ids" widget="many2many_checkboxes" attrs="{'invisible': [('availability_status', '=', False)]}"/>
-                                </group>
-                                <group>
                                     <field name="deposit_price"/>
-                                    <field name="rent_per_hour"/>
                                 </group>
-
+                                <group> 
+                                    <field name="category_id"/><br/><br/>
+                                    <field name="availability_status"/><br/><br/>
+                                    <field name="size_ids" widget="many2many_checkboxes" attrs="{'invisible': [('availability_status', '=', False)]}"/><br/><br/>
+                                </group>
+                                <group>
+                                    <field name="rent_per_day"/>
+                                    <field name="total_rent"/>
+                                </group>
                                 <group col='2'>
                                     <group>
                                         <field name="date_start" string="Available From :" class="oe_inline" widget="daterange" options='{"related_end_date": "date_end"}'
@@ -77,7 +80,7 @@
                                 </group>
                             </group>
                         </page>
-                        <page string="Alterations">
+                        <page string="Alterations" attrs="{'invisible': [('alter_outfit', '=', False)]}">
                             <group col='2' string='Measurements (inches)'>
                                 <group>
                                     <field name="neck"/>
@@ -109,11 +112,11 @@
                 <field name="name"/>
                 <field name="brand"/>
                 <field name="availability_status"/>
-                <field name="rent_per_hour" string="Rent"/>
-                <filter string="Available" name="availability_status" domain="[('availability_status', '=', 'True')]"/>
+                <field name="rent_per_day" string="Rent"/>
+                <filter string="Available" name="availabilitystatus" domain="[('availability_status', '=', 'True')]"/>
                 <group string="Group By">
                     <filter string="Category" name="category_id" context="{'group_by':'category_id'}"/>
-                    <filter string="Size" name="size_ids" context="{'group_by':'size_ids'}"/>
+                    <filter name="size_ids" context="{'group_by':'size_ids'}"/>
                 </group>
             </search>
         </field>

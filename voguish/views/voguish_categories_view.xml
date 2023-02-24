@@ -10,7 +10,7 @@
         <field name="name">voguish.categories.view.tree</field>
         <field name="model">voguish.categories</field>
         <field name="arch" type="xml">
-            <tree string="Channel">
+            <tree string="Channel" default_order="name desc">
                 <field name="name"/>
             </tree>
         </field>
@@ -23,6 +23,7 @@
             <form string="Channel">
                 <sheet>
                     <h1><field name="name"/></h1>
+                    <field name="category_ids"/>
                 </sheet>
             </form>
         </field>

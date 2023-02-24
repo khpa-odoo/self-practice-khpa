@@ -22,7 +22,19 @@
         <field name="arch" type="xml">
             <form string="Channel">
                 <sheet>
+                    <label for="name" string="Customer Name"/>
                     <h1><field name="name"/></h1>
+                    <group col='2'>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="phone"/>
+                            <field name="mobile"/>
+                        </group>
+                        <group>
+                            <field name="email"/>
+                            <field name="website"/>
+                        </group>
+                    </group>
                 </sheet>
             </form>
         </field>
