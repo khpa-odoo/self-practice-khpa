@@ -13,10 +13,11 @@
         <field name="arch" type="xml">
             <tree string="Channel">
                 <field name="sequence" widget="handle"/>
-                <field name="name" string="Outfit Name"/>
                 <field name="category_id"/>
+                <field name="name" string="Outfit Name"/>
                 <field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}"/>
                 <field name="availability_status"/>
+                <field name="state"/>
                 <field name="size_ids" widget="many2many_tags"/>
                 <field name="rent_per_day"/>
                 <field name="deposit_price"/>
@@ -32,10 +33,22 @@
                 <header>
                     <button name="action_rent" string="Rent" states="new,alterations" class="oe_highlight" type="object"/>
                     <button name="action_cancel" string="Cancel" states="new,alterations" type="object"/>
-                        
                     <field name="state" widget="statusbar" options="{'clickable':'1'}"/>
                 </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button class="oe_stat_button" name="%(voguish_tags_action)d"
+                                type="action" icon="fa-tags">
+                            <div class="o_stat_info">
+                                <span class="o_stat_value">
+                                    <field name="tag_count"/>
+                                </span>
+                                <span class="o_stat_text">
+                                    Tags
+                                </span>
+                            </div>
+                        </button>
+                    </div>
                     <div>
                         <field name="image" nolabel='1' widget="image" style="margin-right:15px;" class="oe_avatar"/>
                         <label for="name" string="Outfit Name"/>
@@ -98,8 +111,19 @@
                                 </group>
                             </group>
                         </page>
+                        <page string="Other Info">
+                            <group>
+                                <field name="buyer_id"/>
+                                <field name="salesperson_id"/>
+                            </group>                        
+                        </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" />
+                    <field name="activity_ids" />
+                </div>
             </form>
         </field>
     </record>

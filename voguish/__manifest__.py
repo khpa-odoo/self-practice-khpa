@@ -1,7 +1,7 @@
 {
     'name': "Voguish",
     'version': '1.0',
-    'depends': ['base'],
+    'depends': ['base','mail'],
     'description': "Voguish Model",
     'application': True,
     'license': 'LGPL-3',
@@ -13,5 +13,6 @@
         'views/voguish_tag_view.xml',
         'views/voguish_size_view.xml',
         'views/voguish_menus.xml',
+        'demo/voguish_demo_data.xml',
         'security/ir.model.access.csv']
 }

@@ -1,0 +1,85 @@
+<odoo>
+  <record id="voguish_tag_1" model="voguish.tag">
+    <field name="name">Trending</field>
+    <field name="color">10</field>
+  </record>
+
+  <record id="voguish_tag_2" model="voguish.tag">
+    <field name="name">Skinny</field>
+    <field name="color">6</field>
+  </record>
+
+  <record id="voguish_tag_3" model="voguish.tag">
+    <field name="name">Popular</field>
+    <field name="color">1</field>
+  </record>
+
+  <record id="voguish_tag_4" model="voguish.tag">
+    <field name="name">Gown</field>
+    <field name="color">4</field>
+  </record>
+
+  <record id="voguish_tag_5" model="voguish.tag">
+    <field name="name">Floral</field>
+    <field name="color">11</field>
+  </record>
+
+  <record id="voguish_size_1" model="voguish.size">
+    <field name="name">XS</field>
+  </record>
+
+  <record id="voguish_size_2" model="voguish.size">
+    <field name="name">S</field>
+  </record>
+
+  <record id="voguish_size_3" model="voguish.size">
+    <field name="name">M</field>
+  </record>
+
+  <record id="voguish_size_4" model="voguish.size">
+    <field name="name">L</field>
+  </record>
+
+  <record id="voguish_size_5" model="voguish.size">
+    <field name="name">XL</field>
+  </record>  
+
+  <record id="voguish_size_6" model="voguish.size">
+    <field name="name">XXL</field>
+  </record>  
+  
+  <record id="voguish_categories_1" model="voguish.categories">
+    <field name="name">Party Wear</field>
+  </record>
+
+  <record id="voguish_categories_2" model="voguish.categories">
+    <field name="name">Casuals</field>
+  </record>
+
+  <record id="voguish_categories_3" model="voguish.categories">
+    <field name="name">Ethnics</field>
+  </record>
+
+  <record id="voguish_categories_4" model="voguish.categories">
+    <field name="name">Formals</field>
+  </record>
+
+  <record id="voguish_categories_5" model="voguish.categories">
+    <field name="name">Chic</field>
+  </record>
+  <record id="voguish_categories_6" model="voguish.categories">
+    <field name="name">Routine Wear</field>
+  </record>
+  
+  <record id="id1" model="voguish">
+    <field name="name">Bodycon Dress</field>
+    <field name="category_id" ref="voguish_categories_1"/>
+    <field name="description">Pink Satin Cowl-Front Bodycon Dress</field>
+    <field name="tag_ids" eval="[Command.link(ref('voguish_tag_1')),Command.link(ref('voguish_tag_2'))]"/>
+    <field name="size_ids" eval="[Command.link(ref('voguish_size_1')),Command.link(ref('voguish_size_2')),Command.link(ref('voguish_size_3')),Command.link(ref('voguish_size_4'))]"/>
+    <field name="state">new</field>
+    <field name="rent_per_day">850</field>
+    <field name="alter_outfit">True</field>
+    <field name="availability_status">True</field>
+  </record>
+</odoo>
