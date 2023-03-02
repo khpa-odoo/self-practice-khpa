@@ -1,8 +1,6 @@
 {
-    'name': "Voguish Account",
-    'version': '1.0',
+    'name':"Voguish Account",
     'depends': ['voguish','account'],
-    'description': "Voguish Account Model",
     'application': True,
-    'license': 'LGPL-3'
+    'license': 'LGPL-3',
 }
