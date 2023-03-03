@@ -1,6 +1,6 @@
 {
-    'name':"Real Estate Project",
-    'depends': ['estate','project'],
+    'name':"Voguish Project",
+    'depends': ['voguish','project'],
     'application': True,
     'license' : 'LGPL-3',
 }

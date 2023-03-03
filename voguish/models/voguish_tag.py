@@ -9,6 +9,7 @@ class VoguishTag(models.Model):
     _order = "name desc"
 
     name = fields.Char(required=True)
+    outfit_ids = fields.One2many('voguish', 'tag_ids',required=True)
     color = fields.Integer()
     
     @api.constrains('name')

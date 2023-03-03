@@ -4,6 +4,7 @@
         <field name="name">Product Tags</field>
         <field name="res_model">voguish.tag</field>
         <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
     </record>
     
     <record id="voguish_tag_view_list" model="ir.ui.view">
