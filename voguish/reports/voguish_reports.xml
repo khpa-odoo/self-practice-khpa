@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="voguish_outfits" model="ir.actions.report">
+        <field name="name">Outfit Info</field>
+        <field name="model">voguish</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">voguish.report_template_outfits</field>
+        <field name="report_file">voguish.report_template_outfits</field>
+        <field name="print_report_name">'Outfit - %s' % object.name</field>
+        <field name="binding_model_id" ref="model_voguish"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <record id="report_salesperson_outfits" model="ir.actions.report">
+        <field name="name">Outfits</field>
+        <field name="model">res.users</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">voguish.salesperson_outfits_template</field>
+        <field name="report_file">voguish.salesperson_outfits_template</field>
+        <field name="print_report_name">'Seller - %s' % object.name</field>
+        <field name="binding_model_id" ref="base.model_res_users"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>

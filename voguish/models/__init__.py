@@ -4,3 +4,4 @@ from . import voguish_categories
 from . import voguish_tag
 from . import voguish_size
 from . import voguish_customers
+from . import res_users

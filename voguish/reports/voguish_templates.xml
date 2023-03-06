@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id = "report_template_outfits">
+        <t t-foreach="docs" t-as="outfit">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1>
+                            <span t-field="outfit.name"/>
+                        </h1>
+                        <div>
+                            <strong>Seller:</strong>
+                            <span t-field="outfit.salesperson_id"/>
+                            <br/>
+                            <strong>Total Rent: </strong>
+                            <span t-field="outfit.total_rent"/>
+                            <br/>
+                            <div>
+                                <strong>Status :</strong>
+                                <span t-field="outfit.state"/>
+                            </div>
+                        </div>
+                        <t t-if="outfit.tag_ids">
+                            <t t-call="voguish.tag_template"/>
+                        </t>
+                        <t t-else="">
+                            <strong>No tags have been added yet :(</strong>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+<template id="salesperson_outfits_template">
+        <t t-foreach="docs" t-as="user">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h1> 
+                            <strong>Seller: </strong>
+                            <span t-field="user.name"/>
+                        </h1>
+                        <t t-if='user.outfit_ids'>
+                            <t t-foreach='user.outfit_ids' t-as='outfit'>
+                                <h1>
+                                    <strong><span t-field="outfit.name"/></strong>
+                                </h1>
+                                <div>
+                                    <strong>Total Rent: </strong>
+                                    <span t-field="outfit.total_rent"/>
+                                </div>
+                                <div>
+                                    <strong>Status: </strong>
+                                    <span t-field="outfit.state"/>
+                                </div>
+                                <t t-if='outfit.tag_ids'>
+                                    <t t-call="voguish.tag_template"/>
+                                </t>
+                                <t t-else="">
+                                    <span><strong>No tags have been added yet!</strong></span>
+                                </t>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="tag_template">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tags</th>
+                </tr>
+            </thead>
+            <tbody>
+                <t t-set="tags" t-value="outfit.mapped('tag_ids')"/>
+                <tr t-foreach="tags" t-as="tag">
+                    <td>
+                        <span t-field="tag.name"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+</odoo>

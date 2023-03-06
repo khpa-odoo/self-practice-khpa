@@ -13,8 +13,8 @@
         <field name="arch" type="xml">
             <tree string="Channel">
                 <field name="sequence" widget="handle"/>
-                <field name="category_id"/>
                 <field name="name" string="Outfit Name"/>
+                <field name="category_id"/>
                 <field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}"/>
                 <field name="availability_status"/>
                 <field name="state"/>
@@ -94,20 +94,23 @@
                             </group>
                         </page>
                         <page string="Alterations" attrs="{'invisible': [('alter_outfit', '=', False)]}">
+                            <group><field name="outfit_type" widget="radio"/></group>
                             <group col='2' string='Measurements (inches)'>
-                                <group>
+                                <group attrs="{'required': ['|',('outfit_type', '=', 'mid_length'),('outfit_type', '=', 'full_length')]}">
                                     <field name="neck"/>
-                                    <field name="neck_to_knee"/>
+                                    <field name="arm_hole"/>
+                                    <field name="arm_length"/>
+                                    <field name="wrist"/>
                                     <field name="bust"/>
+                                    <field name="shoulder_to_waist"/>
+                                </group>
+                                <group attrs="{'required': ['|',('outfit_type', '=', 'bottom_wear'),('outfit_type', '=', 'full_length')]}">
+                                    <field name="neck_to_knee"/>
+                                    <field name="waist"/>
                                     <field name="hips"/>
                                     <field name="inseam"/>
-                                </group>
-                                <group>
-                                    <field name="arm_length"/>
-                                    <field name="arm_hole"/>
-                                    <field name="wrist"/>
-                                    <field name="waist"/>
-                                    <field name="shoulder_to_waist"/>
+                                    <field name="outseam"/>
+                                    <field name="head_to_toe"/>
                                 </group>
                             </group>
                         </page>
