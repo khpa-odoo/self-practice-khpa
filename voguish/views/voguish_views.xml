@@ -96,21 +96,21 @@
                         <page string="Alterations" attrs="{'invisible': [('alter_outfit', '=', False)]}">
                             <group><field name="outfit_type" widget="radio"/></group>
                             <group col='2' string='Measurements (inches)'>
-                                <group attrs="{'required': ['|',('outfit_type', '=', 'mid_length'),('outfit_type', '=', 'full_length')]}">
-                                    <field name="neck"/>
-                                    <field name="arm_hole"/>
+                                <group>
+                                    <field name="neck" attrs="{'required': ['|',('outfit_type','=','mid_length'),('outfit_type','=','full_length')]}"/>
+                                    <field name="arm_hole" attrs="{'required': ['|',('outfit_type','=','mid_length'),('outfit_type','=','full_length')]}"/>
                                     <field name="arm_length"/>
                                     <field name="wrist"/>
-                                    <field name="bust"/>
-                                    <field name="shoulder_to_waist"/>
+                                    <field name="bust" attrs="{'required': ['|',('outfit_type','=','mid_length'),('outfit_type','=','full_length')]}"/>
+                                    <field name="shoulder_to_waist" attrs="{'required': ['|',('outfit_type','=','mid_length'),('outfit_type','=','full_length')]}"/>
                                 </group>
-                                <group attrs="{'required': ['|',('outfit_type', '=', 'bottom_wear'),('outfit_type', '=', 'full_length')]}">
+                                <group>
                                     <field name="neck_to_knee"/>
-                                    <field name="waist"/>
-                                    <field name="hips"/>
-                                    <field name="inseam"/>
+                                    <field name="waist" attrs="{'required': ['|',('outfit_type','=','bottom_wear'),('outfit_type','=','full_length')]}"/>
+                                    <field name="hips" attrs="{'required': ['|',('outfit_type','=','bottom _wear'),('outfit_type','=','full_length')]}"/>
+                                    <field name="inseam" attrs="{'required': ['|',('outfit_type','=','bottom_wear'),('outfit_type','=','full_length')]}"/>
                                     <field name="outseam"/>
-                                    <field name="head_to_toe"/>
+                                    <field name="head_to_toe" attrs="{'required': [('outfit_type','=','full_length')]}"/>
                                 </group>
                             </group>
                         </page>
